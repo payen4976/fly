@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+		<style>
+			#clock{width:300px;height:300px;position:relative;border:5px solid #000;
+							border-radius:50%;margin:100px auto;}
+			#desc{width:20px;height:20px;background:#f00;border-radius:50%;
+							position:absolute;left:140px;top:140px;}
+			#twelev,#three,#six,#nine{font-size:20px;color:#f00;position:absolute;}
+			#twelev{float:top;left:140px;}
+			#three{float:right;top:140px;right:0px;}
+			#six{float:bottom;left:145px;bottom:0px;}
+			#nine{float:left;top:140px;}
+			.one,.tow,.four,.five{float:right;width:3px;height:10px;transform:rotate(30deg);
+							position:absolute;right:77px;top:20px;background:#000;}
+			.tow{transform:rotate(60deg);right:22px;top:78px;}
+			.four{transform:rotate(120deg);right:24px;top:216px;}
+			.five{transform:rotate(150deg);right:80px;top:270px;}
+			.seven,.eight,.ten,.eleven{float:left;width:3px;height:10px;transform:rotate(210deg);
+							position:absolute;left:77px;top:270px;background:#000;}
+			.eight{transform:rotate(240deg);left:24px;top:216px;}
+			.ten{transform:rotate(300deg);left:22px;top:78px;}
+			.eleven{transform:rotate(330deg);left:77px;top:20px;}
+			#hours{float:left;width:10px;height:50px;background:#000;position:absolute;
+							left:145px;top:100px;transform-origin:center bottom;transform:rotate(0deg);
+							/* animation:clock 3600s steps(60) infinite; */}
+			#minutes{float:left;width:6px;height:70px;background:#0f0;position:absolute;
+							left:147px;top:80px;transform-origin:center bottom;transform:rotate(0deg);
+							/* animation:clock 3600s steps(60) infinite; */}
+			#seconds{float:right;width:4px;height:100px;background:#f00;position:absolute;
+							left:148px;top:50px;transform-origin:center bottom;transform:rotate(0deg);
+							/* animation:clock 60s steps(60) infinite; */}
+			/* @keyframes clock{ */
+				/* 0%{transform:rotate(0deg); } */
+				/* 100%{transform:rotate(360deg);} */
+			/* } */
+		</style>
+ </head>
+ <body>
+		<div id='clock'>
+			<div id='twelev'>12</div>
+			<div id='three'>3</div>
+			<div id='six'>6</div>
+			<div id='nine'>9</div>
+			<div class='one'></div>
+			<div class='tow'></div>
+			<div class='four'></div>
+			<div class='five'></div>
+			<div class='seven'></div>
+			<div class='eight'></div>
+			<div class='ten'></div>
+			<div class='eleven'></div>
+			<div id='hours'></div>
+			<div id='minutes'></div>
+			<div id='seconds'></div>
+			<div id='desc'></div>
+		</div>
+		<script>
+			setInterval(function(){
+				var now=new Date();
+				var time=now.toLocaleString();
+				var h=time.slice(time.indexOf('午')+1,time.indexOf(':'));
+				var m=time.substr(time.indexOf(':')+1,2);
+				var s=time.substr(time.lastIndexOf(':')+1,2);
+				var sdeg=s*6;
+				var mdeg=m*6;
+				var hdeg=h*30;
+				document.getElementById('seconds').style.transform=`rotate(${sdeg}deg)`;
+				document.getElementById('minutes').style.transform=`rotate(${mdeg}deg)`;
+				document.getElementById('hours').style.transform=`rotate(${hdeg}deg)`;
+				console.log(time);
+				console.log(m);
+			},1000)
+		</script>
+ </body>
+</html>
